@@ -1,0 +1,87 @@
+# CRUD de Livros e Editoras com Node.js, Express e MongoDB
+
+Este projeto é um CRUD simples para gerenciar livros e editoras, desenvolvido com **Node.js**, **Express** e **MongoDB**, utilizando **Mongoose** como ORM.
+
+## 🚀 Tecnologias Utilizadas
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Dotenv (para variáveis de ambiente)
+
+## 📌 Funcionalidades
+- Criar, listar, atualizar e deletar **Livros**
+- Criar, listar, atualizar e deletar **Editoras**
+- Conexão com banco de dados MongoDB via variável de ambiente
+
+## 📦 Instalação
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   cd nome-do-repositorio
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure a conexão com o banco de dados:**
+   - Crie um arquivo **.env** na raiz do projeto e adicione a seguinte variável:
+     ```env
+     DB_CONNECTION_STRING=mongodb://seu-usuario:senha@localhost:27017/seu-banco
+     ```
+
+4. **Inicie o servidor:**
+   ```bash
+   npm run dev
+   ```
+
+## 📌 Rotas da API
+
+### 📚 Livros
+- `GET /livros` → Lista todos os livros
+- `GET /livros/:id` → Busca um livro pelo ID
+- `POST /livros` → Cria um novo livro (JSON: `{ "titulo": "Livro 1", "editora": "id_editora" }`)
+- `PUT /livros/:id` → Atualiza um livro existente
+- `DELETE /livros/:id` → Remove um livro
+
+### 🏢 Editoras
+- `GET /editoras` → Lista todas as editoras
+- `GET /editoras/:id` → Busca uma editora pelo ID
+- `POST /editoras` → Cria uma nova editora (JSON: `{ "nome": "Editora X" }`)
+- `PUT /editoras/:id` → Atualiza uma editora existente
+- `DELETE /editoras/:id` → Remove uma editora
+
+## 🔧 Estrutura do Projeto
+```
+/
+├── src/
+│   ├── models/
+│   │   ├── livroModel.js
+│   │   ├── editoraModel.js
+│   ├── routes/
+│   │   ├── livroRoutes.js
+│   │   ├── editoraRoutes.js
+│   ├── controllers/
+│   │   ├── livroController.js
+│   │   ├── editoraController.js
+│   ├── config/
+│   │   ├── database.js
+│   ├── app.js
+│   ├── server.js
+├── .env
+├── package.json
+└── README.md
+```
+
+## 🛠 Dependências Principais
+- **Express**: Framework para Node.js
+- **Mongoose**: ORM para MongoDB
+- **Dotenv**: Para carregar variáveis de ambiente
+- **Nodemon**: Para reiniciar o servidor automaticamente em desenvolvimento
+
+## 📝 Licença
+Este projeto está sob a licença MIT. Sinta-se à vontade para utilizá-lo e modificá-lo! 🚀
+
