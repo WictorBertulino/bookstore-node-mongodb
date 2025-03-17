@@ -2,11 +2,16 @@ import { autor } from "../models/autor.js";
 import mongoose from "mongoose";
 class AutorController {
 
-    static async listarAutores(req, res) {
-        const lista = await autor.find({});
-        res.status(200).json(lista);
-    }
-    static async listarAutor(req, res) {
+    static listarAutores = async (req, res) => {
+        try {
+          const autoresResultado = await autores.find();
+          res.status(200).json(autoresResultado);
+        } catch (erro) {
+          res.status(500).json({ message: "Erro interno no servidor" });
+        }
+      };
+      
+    static  listarAutor = async (req, res) => {
         try {
             const id = req.params.id;
             if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -25,14 +30,14 @@ class AutorController {
 
     }
 
-    static async atualizarAutor(req, res) {
+    static  atualizarAutor = async(req, res) => {
         const id = req.params.id;
         await autor.findByIdAndUpdate(id, req.body);
         res.status(200).json({
             message: "Autor atualizado com sucesso",
         });
     }
-    static async cadastrarAutor(req, res) {
+    static  cadastrarAutor = async(req, res) => {
 
         try {
             const livroCriado = await autor.create(req.body);
@@ -49,7 +54,7 @@ class AutorController {
 
     }
 
-    static async deletarAutor(req, res) {
+    static  deletarAutor = async (req, res)=> {
         const id = req.params.id;
         await autor.findByIdAndDelete(id);
         res.status(200).json({
