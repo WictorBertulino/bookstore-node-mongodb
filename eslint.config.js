@@ -1,20 +1,16 @@
-import globals, { node } from "globals";
-import pluginJs from "@eslint/js";
+import globals from "globals";
+import js from "@eslint/js";
 
-
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
+  js.configs.recommended, // Importando a configuração recomendada do ESLint
+
   {
     languageOptions: { 
-      globals: globals.browser 
+      globals: globals.browser, // Configurando os globals
     },
-    rules:{
-    "indent": ["error", 2]
-    },
-    env:{
-      node: true,
+    rules: {
+      "indent": ["error", 2], // Exemplo de regra
     }
-  },
- 
-  pluginJs.configs.recommended,
+  }
 ];
