@@ -1,4 +1,4 @@
-import { autor } from "../models/autor.js";
+import { autor } from '../models/autor.js';
 class AutorController {
 
     static listarAutores = async (req, res, next) => {
@@ -19,7 +19,7 @@ class AutorController {
                 res.status(200).json(lista);
             } else {
                 res.status(404).json({
-                    message: "Autor não encontrado"
+                    message: 'Autor não encontrado'
                 });
             }
         } catch (error) {
@@ -33,7 +33,7 @@ class AutorController {
             const id = req.params.id;
             await autor.findByIdAndUpdate(id, req.body);
             res.status(200).json({
-                message: "Autor atualizado com sucesso",
+                message: 'Autor atualizado com sucesso',
             });
         } catch (error) {
             next(error)
@@ -45,7 +45,7 @@ class AutorController {
         try {
             const livroCriado = await autor.create(req.body);
             res.status(201).json({
-                message: "Autor cadastrado com sucesso",
+                message: 'Autor cadastrado com sucesso',
                 autor: livroCriado
             });
         } catch (error) {
@@ -60,7 +60,7 @@ class AutorController {
             const id = req.params.id;
             await autor.findByIdAndDelete(id);
             res.status(200).json({
-                message: "Autor deletado com sucesso",
+                message: 'Autor deletado com sucesso',
             })
         } catch (error) {
             next(error)

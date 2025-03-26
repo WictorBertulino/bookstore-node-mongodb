@@ -1,7 +1,7 @@
 import ErroBase from './ErroBase.js'
 class NaoEncontrado extends ErroBase{
     constructor(){
-        super("Recurso não encontrado", 404);
+        super('Recurso não encontrado', 404);
     }
 
 

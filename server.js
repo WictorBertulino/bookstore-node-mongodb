@@ -1,4 +1,4 @@
-import "dotenv/config"; 
+import 'dotenv/config';
 import app from './src/app.js'; // Importa o app do arquivo app.js
 // Importa o dotenv para carregar as variáveis de ambiente
 const PORT = 3000;

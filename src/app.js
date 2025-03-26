@@ -8,16 +8,12 @@ const conexao = await conectaNaDatabase();
 conexao.on('error', (error) => {
     console.log('Erro ao conectar no banco de dados', error);
 });
-
-
 conexao.once('open', () => {
     console.log('Conexão com o banco de dados estabelecida com sucesso!');
 });
 const app = express();
-
 routes(app);
 app.use(manipulador404);
-
 app.use(manipuladorDeErros);
 export default app; // Exporta o app para ser usado em outros arquivos
 

@@ -4,8 +4,14 @@ import { autor } from '../models/autor.js';
 class LivroController {
 
     static async listrarLivros(req, res, next) {
-        const lista = await livro.find({});
-        res.status(200).json(lista);
+        try {
+
+            const lista = await livro.find({});
+            res.status(200).json(lista);
+        } catch (error) {
+            next(error)
+        }
+
     }
     static async listrarLivro(req, res, next) {
         try {
@@ -23,7 +29,7 @@ class LivroController {
             const id = req.params.id;
             await livro.findByIdAndUpdate(id, req.body);
             res.status(200).json({
-                message: "Livro atualizado com sucesso",
+                message: 'Livro atualizado com sucesso',
             });
         } catch (error) {
             next(error)
@@ -37,7 +43,7 @@ class LivroController {
             const livroCompleto = { ...novoLivro, autor: { ...autorEncontrado._doc } };
             const livroCriado = await livro.create(livroCompleto);
             res.status(201).json({
-                message: "Livro cadastrado com sucesso",
+                message: 'Livro cadastrado com sucesso',
                 livro: livroCriado
             });
         } catch (error) {
@@ -47,13 +53,13 @@ class LivroController {
 
     }
 
-    static async deletarLivro(req, res) {
+    static async deletarLivro(req, res,next) {
 
         try {
             const id = req.params.id;
             await livro.findByIdAndDelete(id);
             res.status(200).json({
-                message: "Livro deletado com sucesso",
+                message: 'Livro deletado com sucesso',
             })
         } catch (error) {
             next(error)
@@ -61,7 +67,7 @@ class LivroController {
 
     }
 
-    static async listarLivrosPorEditora(req, res) {
+    static async listarLivrosPorEditora(req, res,next) {
         const editora = req.query.editora;
         try {
             const lista = await livro.find({ editora: editora });
