@@ -14,7 +14,8 @@ export default [
         rules: {
             'indent': ['error', 4],
             'quotes': ['error', 'single'],
-            'no-trailing-spaces': 'error',
+            'no-unused-vars': 'off',
+            // 'no-trailing-spaces': 'error',
             // Exemplo de regra
         }
     }

@@ -7,7 +7,7 @@ const router = express.Router();
 //  pois ele irá interpretar a primeira rota que ele encontrar
 //e não irá interpretar as demais rotas
 router.get('/livros', LivroController.listrarLivros);
-router.get('/livros/busca', LivroController.listarLivrosPorEditora);
+router.get('/livros/busca', LivroController.listarLivrosPorFiltro);
 router.get('/livros/:id', LivroController.listrarLivro);
 router.put('/livros/:id', LivroController.atualizarLivro);
 router.post('/livros', LivroController.cadastrarLivro);

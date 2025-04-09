@@ -1,16 +1,18 @@
 import mongoose from 'mongoose';
 import NaoEncontrado from '../erros/NaoEncontrado.js';
+import ErroValidacao from '../erros/ErroValidacao.js';
+import ErroBase from '../erros/ErroBase.js';
+import RequisicaoIncorreta from '../erros/RequisicaoIncorreta.js';
 
-function manipuladorDeErros(erro, req, res) {
+function manipuladorDeErros(erro, req, res, next) {
     if (erro instanceof mongoose.Error.CastError) {
-        res.status(400).send({ message: 'Um ou mais dados fornecidos estão incorretos.' })
+        new RequisicaoIncorreta().enviarResposta(res);
     } else if (erro instanceof mongoose.Error.ValidationError) {
-        var mensagem = Object.values(erro.errors)
-            .map((valor) => valor.message)
-            .join(', ');
-        res.status(400).send({ message: mensagem })
+        new ErroValidacao(erro).enviarResposta(res);
     } else  if(erro instanceof NaoEncontrado){
         erro.enviarResposta(res);
+    }else{
+        new ErroBase().enviarResposta(res);
     }
 }
 
